@@ -2,6 +2,7 @@ package com.orientechnologies.orient.core.sql.executor;
 
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.OContextualRecordId;
+import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.record.OElement;
 import com.orientechnologies.orient.core.record.impl.OBlob;
 import com.orientechnologies.orient.core.record.impl.ODocument;
@@ -82,6 +83,14 @@ public class OResultInternal implements OResult {
       }
     }
     return doc;
+  }
+
+  @Override
+  public Optional<ORID> getIdentity() {
+    if (element != null) {
+      return Optional.of(element.getIdentity());
+    }
+    return Optional.empty();
   }
 
   @Override
